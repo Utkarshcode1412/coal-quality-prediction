@@ -1,0 +1,18 @@
+{
+    "final_model": "Random Forest",
+    "mae": 29.026,
+    "rmse": 37.754,
+    "r2_score": 0.9963,
+    "features": [
+        "mine_location",
+        "moisture",
+        "ash",
+        "volatile_matter",
+        "fixed_carbon",
+        "sulphur",
+        "temperature",
+        "depth"
+    ],
+    "target": "gcv",
+    "rows_used": 2500
+}
