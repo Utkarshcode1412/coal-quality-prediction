@@ -688,7 +688,7 @@ and presentation support.
             """
     - GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
     """
-        )
+        ),
             unsafe_allow_html=True
         )
 
