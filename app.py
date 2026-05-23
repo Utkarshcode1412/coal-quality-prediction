@@ -495,13 +495,11 @@ def single_prediction_page(df, model):
 # =========================================================
 
 def analytics_page(df, model):
-
-    st.subheader("📊 Coal Quality Analytics")
+    st.subheader("Coal Quality Analytics")
 
     c1, c2 = st.columns(2)
 
     with c1:
-
         fig1 = px.scatter(
             df,
             x="ash",
@@ -509,11 +507,9 @@ def analytics_page(df, model):
             color="mine_location",
             title="Ash % vs GCV",
         )
-
         st.plotly_chart(fig1, use_container_width=True)
 
     with c2:
-
         fig2 = px.scatter(
             df,
             x="moisture",
@@ -521,8 +517,32 @@ def analytics_page(df, model):
             color="mine_location",
             title="Moisture % vs GCV",
         )
-
         st.plotly_chart(fig2, use_container_width=True)
+
+    st.subheader("Mine-wise Average GCV")
+    mine_quality = df.groupby("mine_location", as_index=False)["gcv"].mean().sort_values("gcv", ascending=False)
+    fig3 = px.bar(mine_quality, x="mine_location", y="gcv", title="Average GCV by Mine Location")
+    st.plotly_chart(fig3, use_container_width=True)
+
+    st.subheader("Feature Importance")
+    try:
+        regressor = model.named_steps["model"]
+        preprocessor = model.named_steps["preprocessor"]
+        feature_names = preprocessor.get_feature_names_out()
+        importances = regressor.feature_importances_
+
+        importance_df = pd.DataFrame(
+            {
+                "feature": feature_names,
+                "importance": importances,
+            }
+        ).sort_values("importance", ascending=False)
+
+        fig4 = px.bar(importance_df, x="importance", y="feature", orientation="h", title="Model Feature Importance")
+        st.plotly_chart(fig4, use_container_width=True)
+        st.dataframe(importance_df, use_container_width=True)
+    except Exception:
+        st.warning("Feature importance is available only for tree-based models.")
 
 # =========================================================
 # SENSOR SIMULATION
@@ -666,14 +686,6 @@ Dashboard Visualization
 """
     )
 
-    st.subheader("📈 Model Performance")
-
-    c1, c2, c3 = st.columns(3)
-
-    c1.metric("Model Used", "Random Forest")
-    c2.metric("Prediction Type", "Regression")
-    c3.metric("Deployment", "Streamlit Cloud")
-
     st.subheader("🏭 Industry Impact")
 
     st.success(
@@ -689,19 +701,6 @@ Dashboard Visualization
 • Enables AI-driven mining operations
 """
     )
-
-    st.subheader("🚀 Future Scope")
-
-    future_scope = [
-        "Real-time IoT sensor integration",
-        "Cloud-based industrial deployment",
-        "Mobile monitoring application",
-        "Automated conveyor monitoring",
-        "Advanced Deep Learning models",
-    ]
-
-    for item in future_scope:
-        st.markdown(f"- {item}")
 
     st.subheader("👨‍💻 Project Team")
 
