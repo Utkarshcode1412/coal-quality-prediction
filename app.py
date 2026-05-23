@@ -592,27 +592,25 @@ def about_project_page():
 <h3>⛏️ AI-Powered Coal Quality Prediction Platform</h3>
 
 <p>
-Coal quality assessment in mining industries is traditionally dependent on laboratory analysis, 
-which is time-consuming, resource-intensive, and delays operational decision-making. Variations 
-in coal properties such as ash content, moisture, sulphur, and fixed carbon significantly affect 
-calorific value, pricing, blending, transportation, and industrial utilization. To address these 
-challenges, this project proposes an AI-powered Coal Quality Prediction and Decision Support System
+Coal quality assessment in mining industries is traditionally dependent on laboratory analysis,
+which is time-consuming, resource-intensive, and delays operational decision-making.
+
+This project proposes an AI-powered Coal Quality Prediction and Decision Support System
 capable of predicting coal quality instantly using machine learning techniques.
 
-The proposed system utilizes historical coal sample data along with operational and geological 
-parameters to predict Gross Calorific Value (GCV) and classify coal grades automatically. 
-A Random Forest Regression model is used to provide accurate predictions, while an interactive 
-Streamlit dashboard enables real-time analysis, batch sample processing, visualization, and 
-recommendation generation.
+The system utilizes historical coal sample data along with operational and geological
+parameters to predict Gross Calorific Value (GCV) and classify coal grades automatically.
+
+A Random Forest Regression model is used to provide accurate predictions, while an interactive
+Streamlit dashboard enables real-time analysis, visualization, and recommendation generation.
 
 The system also includes an IoT-ready sensor simulation module to demonstrate future integration
-with live mining sensors and conveyor monitoring systems. Based on predicted quality, the platform 
-provides actionable recommendations related to blending, dispatch suitability, industrial usage, 
-and pricing categories.
+with live mining sensors and conveyor monitoring systems.
 
-The proposed solution aims to reduce dependency on delayed lab testing, improve operational efficiency, 
-support intelligent decision-making, and contribute toward digital transformation in smart mining 
-ecosystems.
+The proposed solution aims to reduce dependency on delayed lab testing,
+improve operational efficiency,
+support intelligent decision-making,
+and contribute toward digital transformation in smart mining ecosystems.
 </p>
 
 </div>
@@ -627,11 +625,83 @@ ecosystems.
         "Coal Grade Classification",
         "Blending Recommendation",
         "Pricing Recommendation",
-        "IoT-Ready Architecture"
+        "IoT-Ready Architecture",
+        "Batch CSV Prediction",
+        "Interactive Analytics Dashboard",
     ]
 
     for feature in features:
-        st.markdown(f"- {feature}")
+        st.markdown(f"✅ {feature}")
+
+    st.subheader("🚀 Innovation Highlights")
+
+    innovations = [
+        "Real-time AI prediction system",
+        "Decision support recommendations",
+        "Explainable AI architecture",
+        "Industrial mining use-case",
+        "Sensor fusion simulation",
+    ]
+
+    for item in innovations:
+        st.markdown(f"🔹 {item}")
+
+    st.subheader("🏗️ System Architecture")
+
+    st.info(
+        """
+Coal Sample Data
+        ↓
+Data Preprocessing
+        ↓
+Machine Learning Model
+        ↓
+GCV Prediction
+        ↓
+Coal Grade Classification
+        ↓
+Decision Support System
+        ↓
+Dashboard Visualization
+"""
+    )
+
+    st.subheader("📈 Model Performance")
+
+    c1, c2, c3 = st.columns(3)
+
+    c1.metric("Model Used", "Random Forest")
+    c2.metric("Prediction Type", "Regression")
+    c3.metric("Deployment", "Streamlit Cloud")
+
+    st.subheader("🏭 Industry Impact")
+
+    st.success(
+        """
+• Reduces dependency on delayed laboratory testing
+
+• Improves operational efficiency
+
+• Supports faster dispatch decisions
+
+• Helps optimize coal blending strategies
+
+• Enables AI-driven mining operations
+"""
+    )
+
+    st.subheader("🚀 Future Scope")
+
+    future_scope = [
+        "Real-time IoT sensor integration",
+        "Cloud-based industrial deployment",
+        "Mobile monitoring application",
+        "Automated conveyor monitoring",
+        "Advanced Deep Learning models",
+    ]
+
+    for item in future_scope:
+        st.markdown(f"- {item}")
 
     st.subheader("👨‍💻 Project Team")
 
@@ -661,28 +731,36 @@ and deployment workflow.
             unsafe_allow_html=True
         )
 
-   with col2:
+    with col2:
 
         st.markdown(
             """
-    <div class="custom-card">
-    
-    <h3>Aniket Sonawane</h3>
-    
-    ...
-    
-    </div>
-    """,
+<div class="custom-card">
+
+<h3>Aniket Sonawane</h3>
+
+<p><b>Role:</b> Frontend Development & Testing</p>
+
+<p><b>Department:</b> Mining Engineering</p>
+
+<p>
+Worked on frontend enhancement,
+dashboard testing,
+documentation,
+and presentation support.
+</p>
+
+</div>
+""",
             unsafe_allow_html=True
         )
-    
-    # OUTSIDE col2
+
     st.subheader("🔗 Project Links")
-    
+
     st.markdown(
         """
-    - [GitHub Repository](https://github.com/Utkarshcode1412/coal-quality-prediction/)
-    """,
+- [GitHub Repository](https://github.com/Utkarshcode1412/coal-quality-prediction/)
+""",
         unsafe_allow_html=True
     )
 # =========================================================
