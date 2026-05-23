@@ -682,6 +682,8 @@ and presentation support.
 
 </div>
 """,
+           unsafe_allow_html=True
+        )
         st.subheader("🔗 Project Links")
  
         st.markdown(
