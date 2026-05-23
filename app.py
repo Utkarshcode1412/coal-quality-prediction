@@ -645,6 +645,8 @@ ecosystems.
 
 <h3>Utkarsh Pawar</h3>
 
+st.image("C:\Users\UTKARSH\OneDrive\Pictures\Gemini_Generated_Image_fh1ichfh1ichfh1i.jpg", width=150)
+
 <p><b>Role:</b> AI Model Development & System Architecture</p>
 
 <p><b>Department:</b> Electrical Engineering</p>
@@ -667,7 +669,7 @@ and deployment workflow.
             """
 <div class="custom-card">
 
-<h3>Your Aniket Sonawane</h3>
+<h3>Aniket Sonawane</h3>
 
 <p><b>Role:</b> Frontend Development & Testing</p>
 
@@ -684,6 +686,13 @@ and presentation support.
 """,
             unsafe_allow_html=True
         )
+st.subheader("🔗 Project Links")
+
+st.markdown(
+    """
+- GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
+"""
+)
 
 # =========================================================
 # MAIN FUNCTION
