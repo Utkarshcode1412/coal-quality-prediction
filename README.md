@@ -12,24 +12,47 @@ This project predicts coal quality using historical coal sample data and optiona
 - Feature importance visualization
 - Sensor fusion simulation dashboard
 
+## Project Structure
+coal-quality-prediction/
+│
+├── app.py
+├── train_model.py
+├── coal_quality_data.csv
+├── coal_quality_model.pkl
+├── model_metrics.json
+├── requirements.txt
+├── README.md
+└── .gitignore
+
 ## Tech Stack
 
-- Python
-- Streamlit
-- Pandas
-- Scikit-learn
-- Plotly
-- Joblib
+Frontend & Dashboard  : Streamlit
+Machine Learning      : Scikit-learn
+Data Processing       : Pandas, NumPy
+Visualization         : Plotly, Matplotlib
+Model Serialization   : Joblib
+Version Control       : Git & GitHub
 
 ## How to Run
 
-### 1. Create virtual environment
+## Installation & Execution
+
+### 1. Clone the Repository
+```bash 
+git clone https://github.com/Utkarshcode1412/coal-quality-prediction.git
+```
+### 2. Navigate to Project Directory
+``` bash
+cd coal-quality-prediction
+```
+
+### 3. Create virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-### 2. Activate virtual environment
+### 4. Activate virtual environment
 
 For Windows PowerShell:
 
@@ -45,13 +68,13 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
 Then activate again.
 
-### 3. Install dependencies
+### 5. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Train the model
+### 6. Train the model
 
 ```bash
 python train_model.py
@@ -64,7 +87,7 @@ coal_quality_model.pkl
 model_metrics.json
 ```
 
-### 5. Run the dashboard
+### 7. Run the dashboard
 
 ```bash
 streamlit run app.py
@@ -93,8 +116,27 @@ The training script compares:
 - Decision Tree Regressor
 - Random Forest Regressor
 
-The best model is saved and used by the Streamlit app.
+Evaluation metrics used:  
+• R² Score
+• Mean Absolute Error (MAE)
+• Root Mean Squared Error (RMSE)
+due to its superior prediction accuracy and robustness for coal quality estimation.
+
+## Features Available in the Dashboard
+• Single Sample Coal Quality Prediction
+• Coal Grade Classification
+• Quality Category Identification
+• Blending & Dispatch Recommendations
+• CSV Batch Prediction
+• Interactive Data Analytics Dashboard
+• Feature Importance Visualization
+• Real-Time Sensor Simulation
+• Downloadable Prediction Reports
 
 ## Hackathon Pitch
 
 The system reduces dependency on delayed lab reports by predicting coal quality instantly from historical lab data, mine location, geological information, and optional sensor-like inputs. It supports faster decisions for blending, pricing, and dispatch.
+
+## Live Demo
+
+🔗 Deployed Application: https://coal-quality-prediction-dck4wrpzeegnedcisnadzu.streamlit.app/
