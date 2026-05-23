@@ -111,8 +111,6 @@ FEATURE_COLUMNS = [
 
 st.sidebar.markdown(
     """
-    
-    <hr>
     """,
     unsafe_allow_html=True
 )
