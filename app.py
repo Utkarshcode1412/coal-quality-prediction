@@ -1,3 +1,4 @@
+
 import json
 import random
 from pathlib import Path
@@ -6,6 +7,7 @@ import joblib
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+
 
 
 DATA_PATH = Path("coal_quality_data.csv")
@@ -30,6 +32,30 @@ st.set_page_config(
     layout="wide",
 )
 
+import streamlit as st
+
+st.sidebar.markdown(
+    """
+    <h1 style='text-align: center; color: #FFB000;'>
+        ⛏️ Smart Mining AI
+    </h1>
+    <hr>
+    """,
+    unsafe_allow_html=True
+)
+
+page = st.sidebar.radio(
+    "Navigation",
+    [
+        "🏠 Home",
+        "🔮 Single Prediction",
+        "📂 CSV Batch Prediction",
+        "📊 Analytics Dashboard",
+        "📡 Sensor Simulation",
+        "ℹ️ About Project"
+    ]
+)
+
 
 @st.cache_resource
 def load_model():
@@ -48,21 +74,35 @@ def load_data():
 
 
 def get_grade(gcv: float) -> str:
-    if gcv > 7000:
+
+    if gcv >= 7000:
         return "G1"
-    elif gcv > 6700:
+    elif gcv >= 6700:
         return "G2"
-    elif gcv > 6400:
+    elif gcv >= 6400:
         return "G3"
-    elif gcv > 6100:
+    elif gcv >= 6100:
         return "G4"
-    elif gcv > 5800:
+    elif gcv >= 5800:
         return "G5"
-    elif gcv > 5500:
+    elif gcv >= 5500:
         return "G6"
-    elif gcv > 5200:
+    elif gcv >= 5200:
         return "G7"
-    return "Low Grade"
+    elif gcv >= 4900:
+        return "G8"
+    elif gcv >= 4600:
+        return "G9"
+    elif gcv >= 4300:
+        return "G10"
+    elif gcv >= 4000:
+        return "G11"
+    elif gcv >= 3700:
+        return "G12"
+    elif gcv >= 3400:
+        return "G13"
+    else:
+        return "G14"
 
 
 def get_quality_category(gcv: float) -> str:
@@ -95,6 +135,46 @@ def get_recommendation(gcv: float, ash: float, moisture: float, sulphur: float) 
 
     return " ".join(suggestions)
 
+def get_blending_recommendation(gcv, ash, moisture, sulphur):
+
+    current_grade = get_grade(gcv)
+
+    if gcv < 3400:
+        blend_with = "G4 coal"
+        target_grade = "G8"
+        ratio = "60:40"
+        target_gcv = 5000
+
+    elif gcv < 4300:
+        blend_with = "G5 coal"
+        target_grade = "G7"
+        ratio = "65:35"
+        target_gcv = 5200
+
+    elif gcv < 5200:
+        blend_with = "G3 coal"
+        target_grade = "G5"
+        ratio = "70:30"
+        target_gcv = 5800
+
+    elif gcv < 5800:
+        blend_with = "G2 coal"
+        target_grade = "G4"
+        ratio = "75:25"
+        target_gcv = 6200
+
+    else:
+        return f"Current grade is {current_grade}. No blending required."
+
+    result = f"""
+Current Grade: {current_grade}
+Blend With: {blend_with}
+Ratio: {ratio}
+Expected Grade: {target_grade}
+Expected GCV: {target_gcv} kcal/kg
+"""
+
+    return result
 
 def get_price_category(gcv: float) -> str:
     if gcv >= 7000:
@@ -198,7 +278,9 @@ def single_prediction_page(df, model):
         quality = get_quality_category(predicted_gcv)
         price = get_price_category(predicted_gcv)
         recommendation = get_recommendation(predicted_gcv, ash, moisture, sulphur)
-
+        blending = get_blending_recommendation(
+            predicted_gcv, ash, moisture, sulphur
+        )
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Predicted GCV", f"{predicted_gcv} kcal/kg")
         c2.metric("Coal Grade", grade)
@@ -206,7 +288,8 @@ def single_prediction_page(df, model):
         c4.metric("Pricing", price)
 
         st.success(recommendation)
-
+        st.subheader("Blending Recommendation")
+        st.info(blending)
 
 def batch_prediction_page(model):
     st.subheader("CSV Batch Prediction")
