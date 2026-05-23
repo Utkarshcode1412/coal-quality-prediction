@@ -682,13 +682,13 @@ and presentation support.
 
 </div>
 """,
-st.subheader("🔗 Project Links")
-
-st.markdown(
+        st.subheader("🔗 Project Links")
+ 
+        st.markdown(
+            """
+    - GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
     """
-- GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
-"""
-),
+        )
             unsafe_allow_html=True
         )
 
