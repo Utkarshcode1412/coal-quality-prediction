@@ -26,11 +26,11 @@ FEATURE_COLUMNS = [
 ]
 
 
-st.set_page_config(
-    page_title="AI Coal Quality Prediction",
-    page_icon="⛏️",
-    layout="wide",
-)
+# st.set_page_config(
+#     page_title="AI Coal Quality Prediction",
+#     page_icon="⛏️",
+#     layout="wide",
+# )
 
 import streamlit as st
 
