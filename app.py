@@ -645,8 +645,6 @@ ecosystems.
 
 <h3>Utkarsh Pawar</h3>
 
-st.image("C:\Users\UTKARSH\OneDrive\Pictures\Gemini_Generated_Image_fh1ichfh1ichfh1i.jpg", width=150)
-
 <p><b>Role:</b> AI Model Development & System Architecture</p>
 
 <p><b>Department:</b> Electrical Engineering</p>
