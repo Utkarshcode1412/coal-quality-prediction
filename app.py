@@ -592,15 +592,27 @@ def about_project_page():
 <h3>⛏️ AI-Powered Coal Quality Prediction Platform</h3>
 
 <p>
-This project modernizes coal quality assessment using Artificial Intelligence,
-Machine Learning, predictive analytics, and smart mining concepts.
-</p>
+Coal quality assessment in mining industries is traditionally dependent on laboratory analysis, 
+which is time-consuming, resource-intensive, and delays operational decision-making. Variations 
+in coal properties such as ash content, moisture, sulphur, and fixed carbon significantly affect 
+calorific value, pricing, blending, transportation, and industrial utilization. To address these 
+challenges, this project proposes an AI-powered Coal Quality Prediction and Decision Support System
+capable of predicting coal quality instantly using machine learning techniques.
 
-<p>
-The platform predicts Gross Calorific Value (GCV),
-classifies coal grades,
-and provides operational recommendations
-for blending, pricing, and dispatch decisions.
+The proposed system utilizes historical coal sample data along with operational and geological 
+parameters to predict Gross Calorific Value (GCV) and classify coal grades automatically. 
+A Random Forest Regression model is used to provide accurate predictions, while an interactive 
+Streamlit dashboard enables real-time analysis, batch sample processing, visualization, and 
+recommendation generation.
+
+The system also includes an IoT-ready sensor simulation module to demonstrate future integration
+with live mining sensors and conveyor monitoring systems. Based on predicted quality, the platform 
+provides actionable recommendations related to blending, dispatch suitability, industrial usage, 
+and pricing categories.
+
+The proposed solution aims to reduce dependency on delayed lab testing, improve operational efficiency, 
+support intelligent decision-making, and contribute toward digital transformation in smart mining 
+ecosystems.
 </p>
 
 </div>
@@ -615,9 +627,6 @@ for blending, pricing, and dispatch decisions.
         "Coal Grade Classification",
         "Blending Recommendation",
         "Pricing Recommendation",
-        "Interactive Analytics Dashboard",
-        "CSV Batch Prediction",
-        "Explainable AI",
         "IoT-Ready Architecture"
     ]
 
@@ -658,11 +667,11 @@ and deployment workflow.
             """
 <div class="custom-card">
 
-<h3>Your Friend Name</h3>
+<h3>Your Aniket Sonawane</h3>
 
 <p><b>Role:</b> Frontend Development & Testing</p>
 
-<p><b>Department:</b> Your Friend Department</p>
+<p><b>Department:</b> Mining Engineering</p>
 
 <p>
 Worked on frontend enhancement,
