@@ -661,39 +661,30 @@ and deployment workflow.
             unsafe_allow_html=True
         )
 
-    with col2:
+   with col2:
 
         st.markdown(
             """
-<div class="custom-card">
-
-<h3>Aniket Sonawane</h3>
-
-<p><b>Role:</b> Frontend Development & Testing</p>
-
-<p><b>Department:</b> Mining Engineering</p>
-
-<p>
-Worked on frontend enhancement,
-dashboard testing,
-documentation,
-and presentation support.
-</p>
-
-</div>
-""",
-           unsafe_allow_html=True
-        )
-        st.subheader("🔗 Project Links")
- 
-        st.markdown(
-            """
-    - GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
-    """
-        ),
+    <div class="custom-card">
+    
+    <h3>Aniket Sonawane</h3>
+    
+    ...
+    
+    </div>
+    """,
             unsafe_allow_html=True
         )
-
+    
+    # OUTSIDE col2
+    st.subheader("🔗 Project Links")
+    
+    st.markdown(
+        """
+    - [GitHub Repository](https://github.com/Utkarshcode1412/coal-quality-prediction/)
+    """,
+        unsafe_allow_html=True
+    )
 # =========================================================
 # MAIN FUNCTION
 # =========================================================
