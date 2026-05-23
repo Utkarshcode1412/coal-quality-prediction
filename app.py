@@ -490,6 +490,32 @@ def single_prediction_page(df, model):
 
         st.info(blending)
 
+def batch_prediction_page(model):
+    st.subheader("CSV Batch Prediction")
+    st.write("Upload a CSV file with the same input columns used for training.")
+
+    uploaded_file = st.file_uploader("Upload Coal Sample CSV", type=["csv"])
+
+    if uploaded_file is not None:
+        uploaded_df = pd.read_csv(uploaded_file)
+
+        try:
+            result_df = add_prediction_columns(uploaded_df, model)
+            st.success("Batch prediction completed.")
+            st.dataframe(result_df, use_container_width=True)
+
+            csv = result_df.to_csv(index=False).encode("utf-8")
+            st.download_button(
+                "Download Prediction Report",
+                data=csv,
+                file_name="coal_quality_prediction_report.csv",
+                mime="text/csv",
+            )
+        except Exception as e:
+            st.error(str(e))
+
+
+
 # =========================================================
 # ANALYTICS PAGE
 # =========================================================
