@@ -111,14 +111,7 @@ FEATURE_COLUMNS = [
 
 st.sidebar.markdown(
     """
-    <h1 style='text-align: center; color: #FFB000;'>
-        ⛏️ Smart Mining AI
-    </h1>
-
-    <p style='text-align: center; color: white;'>
-        AI-Powered Coal Quality Prediction Platform
-    </p>
-
+    
     <hr>
     """,
     unsafe_allow_html=True
