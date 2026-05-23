@@ -514,7 +514,47 @@ def batch_prediction_page(model):
         except Exception as e:
             st.error(str(e))
 
+def add_prediction_columns(df: pd.DataFrame, model):
 
+    prediction_df = df.copy()
+
+    missing = [
+        col for col in FEATURE_COLUMNS
+        if col not in prediction_df.columns
+    ]
+
+    if missing:
+        raise ValueError(
+            f"Uploaded CSV is missing columns: {missing}"
+        )
+
+    prediction_df["predicted_gcv"] = model.predict(
+        prediction_df[FEATURE_COLUMNS]
+    ).round(2)
+
+    prediction_df["grade"] = prediction_df[
+        "predicted_gcv"
+    ].apply(get_grade)
+
+    prediction_df["quality_category"] = prediction_df[
+        "predicted_gcv"
+    ].apply(get_quality_category)
+
+    prediction_df["price_category"] = prediction_df[
+        "predicted_gcv"
+    ].apply(get_price_category)
+
+    prediction_df["recommendation"] = prediction_df.apply(
+        lambda row: get_recommendation(
+            row["predicted_gcv"],
+            row["ash"],
+            row["moisture"],
+            row["sulphur"]
+        ),
+        axis=1
+    )
+
+    return prediction_df
 
 # =========================================================
 # ANALYTICS PAGE
@@ -817,6 +857,10 @@ def main():
     elif page == "🔮 Single Prediction":
 
         single_prediction_page(df, model)
+        
+    elif page == "📂 CSV Batch Prediction":
+
+        batch_prediction_page(model)
 
     elif page == "📊 Analytics Dashboard":
 
