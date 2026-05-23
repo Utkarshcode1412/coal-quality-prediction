@@ -682,15 +682,15 @@ and presentation support.
 
 </div>
 """,
-            unsafe_allow_html=True
-        )
 st.subheader("🔗 Project Links")
 
 st.markdown(
     """
 - GitHub Repository: https://github.com/Utkarshcode1412/coal-quality-prediction/
 """
-)
+),
+            unsafe_allow_html=True
+        )
 
 # =========================================================
 # MAIN FUNCTION
