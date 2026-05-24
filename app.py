@@ -32,7 +32,7 @@ page_bg = """
         rgba(0,0,0,0.75),
         rgba(0,0,0,0.75)
     ),
-    url("https://unsplash.com/photos/yellow-and-white-excavator-on-rocky-mountain-during-daytime-NWByxwVN-J0");
+    background-image: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd");
 
     background-size: cover;
     background-position: center;
