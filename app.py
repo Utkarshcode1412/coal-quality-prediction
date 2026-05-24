@@ -32,7 +32,7 @@ page_bg = """
         rgba(0,0,0,0.75),
         rgba(0,0,0,0.75)
     ),
-    url("https://images.unsplash.com/photo-1593250718797-ce0f8c0728a5?w=900&q=85");
+    url("https://unsplash.com/photos/yellow-and-white-excavator-on-rocky-mountain-during-daytime-NWByxwVN-J0");
 
     background-size: cover;
     background-position: center;
@@ -121,6 +121,178 @@ footer {
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
+
+# =========================================================
+# THEME TOGGLE SYSTEM (ADD THIS AFTER set_page_config)
+# =========================================================
+
+# Theme state
+if "theme" not in st.session_state:
+    st.session_state.theme = "dark"
+
+# Top-right toggle button
+top_col1, top_col2, top_col3 = st.columns([8, 1, 1])
+
+with top_col3:
+    if st.button(
+        "🌙 Dark" if st.session_state.theme == "dark" else "☀️ Light",
+        key="theme_toggle"
+    ):
+        st.session_state.theme = (
+            "light"
+            if st.session_state.theme == "dark"
+            else "dark"
+        )
+        st.rerun()
+
+theme = st.session_state.theme
+
+# =========================================================
+# DARK THEME CSS
+# =========================================================
+
+dark_css = """
+<style>
+
+.stApp {
+    background-color: #0f172a;
+    color: white;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+section[data-testid="stSidebar"] {
+    background-color: #111827;
+    width: 320px !important;
+}
+
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+.stRadio label {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+div[data-testid="metric-container"] {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+}
+
+.custom-card {
+    background-color: #1e293b;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #334155;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.stDataFrame {
+    background-color: #1e293b !important;
+}
+
+</style>
+"""
+
+# =========================================================
+# LIGHT THEME CSS
+# =========================================================
+
+light_css = """
+<style>
+
+.stApp {
+    background-color: #f8fafc;
+    color: black;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+section[data-testid="stSidebar"] {
+    background-color: #e2e8f0;
+    width: 320px !important;
+}
+
+section[data-testid="stSidebar"] * {
+    color: black !important;
+}
+
+.stRadio label {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: black !important;
+}
+
+div[data-testid="metric-container"] {
+    background-color: white;
+    border: 1px solid #cbd5e1;
+    padding: 15px;
+    border-radius: 12px;
+    color: black;
+}
+
+.custom-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #cbd5e1;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.stDataFrame {
+    background-color: white !important;
+}
+
+</style>
+"""
+
+# =========================================================
+# APPLY THEME
+# =========================================================
+
+if theme == "dark":
+    st.markdown(dark_css, unsafe_allow_html=True)
+    plotly_template = "plotly_dark"
+
+else:
+    st.markdown(light_css, unsafe_allow_html=True)
+    plotly_template = "plotly_white"
+
+# for graphs
+fig1 = px.scatter(
+    df,
+    x="ash",
+    y="gcv",
+    color="mine_location",
+    title="Ash % vs GCV",
+    template=plotly_template
+)
 
 # =========================================================
 # FILE PATHS
