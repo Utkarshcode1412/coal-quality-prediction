@@ -23,178 +23,120 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
-# hide_streamlit_style = """
-# <style>
+if theme:
 
-# /* Hide only Streamlit default menu */
-# #MainMenu {
-#     visibility: hidden;
-# }
+    custom_css = """
+    <style>
 
-# /* Hide footer */
-# footer {
-#     visibility: hidden;
-# }
+    .stApp {
+        background-image: linear-gradient(
+            rgba(0,0,0,0.78),
+            rgba(0,0,0,0.78)
+        ),
+        url("https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070&auto=format&fit=crop");
 
-# /* DO NOT HIDE HEADER */
-# /*
-# header {
-#     visibility: hidden;
-# }
-# */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+    }
 
-# /* Sidebar Styling */
-# section[data-testid="stSidebar"] {
-#     background-color: #111827;
-# }
+    section[data-testid="stSidebar"] {
+        background: rgba(17, 24, 39, 0.95);
+    }
 
-# /* Sidebar Text */
-# section[data-testid="stSidebar"] * {
-#     color: white !important;
-# }
+    section[data-testid="stSidebar"] * {
+        color: white !important;
+    }
 
-# /* Radio Button Styling */
-# .stRadio > div {
-#     gap: 10px;
-# }
+    h1, h2, h3 {
+        color: #FFB000 !important;
+    }
 
-# .stRadio label {
-#     font-size: 18px !important;
-#     font-weight: 600 !important;
-# }
+    div[data-testid="metric-container"] {
+        background: rgba(30, 41, 59, 0.75);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 18px;
+        backdrop-filter: blur(10px);
+    }
 
-# /* Metric Cards */
-# div[data-testid="metric-container"] {
-#     background-color: #1e293b;
-#     border: 1px solid #334155;
-#     padding: 15px;
-#     border-radius: 12px;
-# }
+    .custom-card {
+        background: rgba(30, 41, 59, 0.75);
+        border-radius: 18px;
+        padding: 25px;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+    }
 
-# /* Custom Cards */
-# .custom-card {
-#     background-color: #1e293b;
-#     padding: 25px;
-#     border-radius: 18px;
-#     border: 1px solid #334155;
-#     margin-bottom: 20px;
-# }
+    .stButton>button {
+        background-color: #FFB000;
+        color: black;
+        border-radius: 12px;
+        border: none;
+        font-weight: bold;
+    }
 
-# .custom-card h3 {
-#     color: #FFB000;
-# }
+    #MainMenu {visibility:hidden;}
+    footer {visibility:hidden;}
 
-# .custom-card p {
-#     color: white;
-# }
+    </style>
+    """
 
-# .main-title {
-#     color: #FFB000;
-# }
+else:
 
-# </style>
-# """
+    custom_css = """
+    <style>
 
-page_bg = """
-<style>
+    .stApp {
+        background-color: #f8fafc;
+        color: black;
+    }
 
-/* Main App Background */
-.stApp {
-    background-image: linear-gradient(
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.75)
-    ),
-    url("https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070&auto=format&fit=crop");
+    section[data-testid="stSidebar"] {
+        background: #e2e8f0;
+    }
 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+    h1, h2, h3 {
+        color: #1e293b !important;
+    }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: rgba(17, 24, 39, 0.92);
-    backdrop-filter: blur(10px);
-}
+    div[data-testid="metric-container"] {
+        background: white;
+        border: 1px solid #cbd5e1;
+        border-radius: 16px;
+        padding: 18px;
+    }
 
-/* Sidebar Text */
-section[data-testid="stSidebar"] * {
-    color: white !important;
-}
+    .custom-card {
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        color: black;
+        border: 1px solid #cbd5e1;
+    }
 
-/* Main Content */
-.main {
-    color: white;
-}
+    .stButton>button {
+        background-color: #1e293b;
+        color: white;
+        border-radius: 12px;
+        border: none;
+        font-weight: bold;
+    }
 
-/* Titles */
-h1, h2, h3 {
-    color: #FFB000 !important;
-}
+    #MainMenu {visibility:hidden;}
+    footer {visibility:hidden;}
 
-/* Metric Cards */
-div[data-testid="metric-container"] {
-    background: rgba(30, 41, 59, 0.75);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 18px;
-    border-radius: 16px;
-    backdrop-filter: blur(8px);
-}
+    </style>
+    """
 
-/* Custom Cards */
-.custom-card {
-    background: rgba(30, 41, 59, 0.75);
-    border-radius: 18px;
-    padding: 25px;
-    border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    color: white;
-}
+st.markdown(custom_css, unsafe_allow_html=True)
 
-/* Buttons */
-.stButton>button {
-    background-color: #FFB000;
-    color: black;
-    border-radius: 12px;
-    border: none;
-    font-weight: bold;
-    padding: 10px 20px;
-}
-
-/* Radio Buttons */
-.stRadio label {
-    font-size: 18px !important;
-    font-weight: 600 !important;
-}
-
-/* Dataframes */
-[data-testid="stDataFrame"] {
-    background-color: rgba(17,24,39,0.85);
-    border-radius: 12px;
-}
-
-/* Input Fields */
-.stTextInput input,
-.stNumberInput input,
-.stSelectbox div {
-    background-color: rgba(255,255,255,0.08);
-    color: white !important;
-}
-
-/* Hide Streamlit Branding */
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-</style>
-"""
-
-st.markdown(page_bg, unsafe_allow_html=True)
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+theme = st.sidebar.toggle(
+    "🌙 Dark Mode",
+    value=True
+)
 
 # =========================================================
 # FILE PATHS
