@@ -23,29 +23,98 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
-hide_streamlit_style = """
+# hide_streamlit_style = """
+# <style>
+
+# /* Hide only Streamlit default menu */
+# #MainMenu {
+#     visibility: hidden;
+# }
+
+# /* Hide footer */
+# footer {
+#     visibility: hidden;
+# }
+
+# /* DO NOT HIDE HEADER */
+# /*
+# header {
+#     visibility: hidden;
+# }
+# */
+
+# /* Sidebar Styling */
+# section[data-testid="stSidebar"] {
+#     background-color: #111827;
+# }
+
+# /* Sidebar Text */
+# section[data-testid="stSidebar"] * {
+#     color: white !important;
+# }
+
+# /* Radio Button Styling */
+# .stRadio > div {
+#     gap: 10px;
+# }
+
+# .stRadio label {
+#     font-size: 18px !important;
+#     font-weight: 600 !important;
+# }
+
+# /* Metric Cards */
+# div[data-testid="metric-container"] {
+#     background-color: #1e293b;
+#     border: 1px solid #334155;
+#     padding: 15px;
+#     border-radius: 12px;
+# }
+
+# /* Custom Cards */
+# .custom-card {
+#     background-color: #1e293b;
+#     padding: 25px;
+#     border-radius: 18px;
+#     border: 1px solid #334155;
+#     margin-bottom: 20px;
+# }
+
+# .custom-card h3 {
+#     color: #FFB000;
+# }
+
+# .custom-card p {
+#     color: white;
+# }
+
+# .main-title {
+#     color: #FFB000;
+# }
+
+# </style>
+# """
+
+page_bg = """
 <style>
 
-/* Hide only Streamlit default menu */
-#MainMenu {
-    visibility: hidden;
+/* Main App Background */
+.stApp {
+    background-image: linear-gradient(
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.75)
+    ),
+    url("https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070&auto=format&fit=crop");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/* Hide footer */
-footer {
-    visibility: hidden;
-}
-
-/* DO NOT HIDE HEADER */
-/*
-header {
-    visibility: hidden;
-}
-*/
-
-/* Sidebar Styling */
+/* Sidebar */
 section[data-testid="stSidebar"] {
-    background-color: #111827;
+    background: rgba(17, 24, 39, 0.92);
+    backdrop-filter: blur(10px);
 }
 
 /* Sidebar Text */
@@ -53,48 +122,79 @@ section[data-testid="stSidebar"] * {
     color: white !important;
 }
 
-/* Radio Button Styling */
-.stRadio > div {
-    gap: 10px;
+/* Main Content */
+.main {
+    color: white;
 }
 
+/* Titles */
+h1, h2, h3 {
+    color: #FFB000 !important;
+}
+
+/* Metric Cards */
+div[data-testid="metric-container"] {
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 18px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+}
+
+/* Custom Cards */
+.custom-card {
+    background: rgba(30, 41, 59, 0.75);
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    color: white;
+}
+
+/* Buttons */
+.stButton>button {
+    background-color: #FFB000;
+    color: black;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+/* Radio Buttons */
 .stRadio label {
     font-size: 18px !important;
     font-weight: 600 !important;
 }
 
-/* Metric Cards */
-div[data-testid="metric-container"] {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 15px;
+/* Dataframes */
+[data-testid="stDataFrame"] {
+    background-color: rgba(17,24,39,0.85);
     border-radius: 12px;
 }
 
-/* Custom Cards */
-.custom-card {
-    background-color: #1e293b;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #334155;
-    margin-bottom: 20px;
+/* Input Fields */
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox div {
+    background-color: rgba(255,255,255,0.08);
+    color: white !important;
 }
 
-.custom-card h3 {
-    color: #FFB000;
+/* Hide Streamlit Branding */
+#MainMenu {
+    visibility: hidden;
 }
 
-.custom-card p {
-    color: white;
-}
-
-.main-title {
-    color: #FFB000;
+footer {
+    visibility: hidden;
 }
 
 </style>
 """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+st.markdown(page_bg, unsafe_allow_html=True)
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # =========================================================
 # FILE PATHS
