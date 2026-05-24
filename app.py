@@ -23,6 +23,11 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
+theme = st.sidebar.toggle(
+    "🌙 Dark Mode",
+    value=True
+)
+
 if theme:
 
     custom_css = """
@@ -132,11 +137,6 @@ else:
     """
 
 st.markdown(custom_css, unsafe_allow_html=True)
-
-theme = st.sidebar.toggle(
-    "🌙 Dark Mode",
-    value=True
-)
 
 # =========================================================
 # FILE PATHS
