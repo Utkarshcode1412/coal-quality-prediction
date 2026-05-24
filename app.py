@@ -23,120 +23,104 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
-theme = st.sidebar.toggle(
-    "🌙 Dark Mode",
-    value=True
-)
+page_bg = """
+<style>
 
-if theme:
+/* Main App Background */
+.stApp {
+    background-image: linear-gradient(
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.75)
+    ),
+    url("https://images.unsplash.com/photo-1593250718797-ce0f8c0728a5?w=900&q=85");
 
-    custom_css = """
-    <style>
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 
-    .stApp {
-        background-image: linear-gradient(
-            rgba(0,0,0,0.78),
-            rgba(0,0,0,0.78)
-        ),
-        url("https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070&auto=format&fit=crop");
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: rgba(17, 24, 39, 0.92);
+    backdrop-filter: blur(10px);
+}
 
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: white;
-    }
+/* Sidebar Text */
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
 
-    section[data-testid="stSidebar"] {
-        background: rgba(17, 24, 39, 0.95);
-    }
+/* Main Content */
+.main {
+    color: white;
+}
 
-    section[data-testid="stSidebar"] * {
-        color: white !important;
-    }
+/* Titles */
+h1, h2, h3 {
+    color: #FFB000 !important;
+}
 
-    h1, h2, h3 {
-        color: #FFB000 !important;
-    }
+/* Metric Cards */
+div[data-testid="metric-container"] {
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 18px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+}
 
-    div[data-testid="metric-container"] {
-        background: rgba(30, 41, 59, 0.75);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 16px;
-        padding: 18px;
-        backdrop-filter: blur(10px);
-    }
+/* Custom Cards */
+.custom-card {
+    background: rgba(30, 41, 59, 0.75);
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    color: white;
+}
 
-    .custom-card {
-        background: rgba(30, 41, 59, 0.75);
-        border-radius: 18px;
-        padding: 25px;
-        color: white;
-        border: 1px solid rgba(255,255,255,0.08);
-        backdrop-filter: blur(10px);
-    }
+/* Buttons */
+.stButton>button {
+    background-color: #FFB000;
+    color: black;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+}
 
-    .stButton>button {
-        background-color: #FFB000;
-        color: black;
-        border-radius: 12px;
-        border: none;
-        font-weight: bold;
-    }
+/* Radio Buttons */
+.stRadio label {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
 
-    #MainMenu {visibility:hidden;}
-    footer {visibility:hidden;}
+/* Dataframes */
+[data-testid="stDataFrame"] {
+    background-color: rgba(17,24,39,0.85);
+    border-radius: 12px;
+}
 
-    </style>
-    """
+/* Input Fields */
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox div {
+    background-color: rgba(255,255,255,0.08);
+    color: white !important;
+}
 
-else:
+/* Hide Streamlit Branding */
+#MainMenu {
+    visibility: hidden;
+}
 
-    custom_css = """
-    <style>
+footer {
+    visibility: hidden;
+}
 
-    .stApp {
-        background-color: #f8fafc;
-        color: black;
-    }
-
-    section[data-testid="stSidebar"] {
-        background: #e2e8f0;
-    }
-
-    h1, h2, h3 {
-        color: #1e293b !important;
-    }
-
-    div[data-testid="metric-container"] {
-        background: white;
-        border: 1px solid #cbd5e1;
-        border-radius: 16px;
-        padding: 18px;
-    }
-
-    .custom-card {
-        background: white;
-        border-radius: 18px;
-        padding: 25px;
-        color: black;
-        border: 1px solid #cbd5e1;
-    }
-
-    .stButton>button {
-        background-color: #1e293b;
-        color: white;
-        border-radius: 12px;
-        border: none;
-        font-weight: bold;
-    }
-
-    #MainMenu {visibility:hidden;}
-    footer {visibility:hidden;}
-
-    </style>
-    """
-
-st.markdown(custom_css, unsafe_allow_html=True)
+</style>
+"""
+st.markdown(page_bg, unsafe_allow_html=True)
 
 # =========================================================
 # FILE PATHS
