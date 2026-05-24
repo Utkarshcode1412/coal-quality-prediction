@@ -32,7 +32,7 @@ page_bg = """
         rgba(0,0,0,0.75),
         rgba(0,0,0,0.75)
     ),
-    background-image: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd");
+    background-image: url("https://images.unsplash.com/photo-1587919968590-fbc98cea6c9a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWluaW5nJTIwaW5kdXN0cnl8ZW58MHx8MHx8fDA%3D");
 
     background-size: cover;
     background-position: center;
