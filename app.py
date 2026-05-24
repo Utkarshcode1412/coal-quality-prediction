@@ -123,168 +123,6 @@ footer {
 st.markdown(page_bg, unsafe_allow_html=True)
 
 # =========================================================
-# THEME TOGGLE SYSTEM (ADD THIS AFTER set_page_config)
-# =========================================================
-
-# Theme state
-if "theme" not in st.session_state:
-    st.session_state.theme = "dark"
-
-# Top-right toggle button
-top_col1, top_col2, top_col3 = st.columns([8, 1, 1])
-
-with top_col3:
-    if st.button(
-        "🌙 Dark" if st.session_state.theme == "dark" else "☀️ Light",
-        key="theme_toggle"
-    ):
-        st.session_state.theme = (
-            "light"
-            if st.session_state.theme == "dark"
-            else "dark"
-        )
-        st.rerun()
-
-theme = st.session_state.theme
-
-# =========================================================
-# DARK THEME CSS
-# =========================================================
-
-dark_css = """
-<style>
-
-.stApp {
-    background-color: #0f172a;
-    color: white;
-}
-
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-header {
-    visibility: hidden;
-}
-
-section[data-testid="stSidebar"] {
-    background-color: #111827;
-    width: 320px !important;
-}
-
-section[data-testid="stSidebar"] * {
-    color: white !important;
-}
-
-.stRadio label {
-    font-size: 18px !important;
-    font-weight: 600 !important;
-}
-
-div[data-testid="metric-container"] {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 15px;
-    border-radius: 12px;
-    color: white;
-}
-
-.custom-card {
-    background-color: #1e293b;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #334155;
-    margin-bottom: 20px;
-    color: white;
-}
-
-.stDataFrame {
-    background-color: #1e293b !important;
-}
-
-</style>
-"""
-
-# =========================================================
-# LIGHT THEME CSS
-# =========================================================
-
-light_css = """
-<style>
-
-.stApp {
-    background-color: #f8fafc;
-    color: black;
-}
-
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-header {
-    visibility: hidden;
-}
-
-section[data-testid="stSidebar"] {
-    background-color: #e2e8f0;
-    width: 320px !important;
-}
-
-section[data-testid="stSidebar"] * {
-    color: black !important;
-}
-
-.stRadio label {
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    color: black !important;
-}
-
-div[data-testid="metric-container"] {
-    background-color: white;
-    border: 1px solid #cbd5e1;
-    padding: 15px;
-    border-radius: 12px;
-    color: black;
-}
-
-.custom-card {
-    background-color: white;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #cbd5e1;
-    margin-bottom: 20px;
-    color: black;
-}
-
-.stDataFrame {
-    background-color: white !important;
-}
-
-</style>
-"""
-
-# =========================================================
-# APPLY THEME
-# =========================================================
-
-if theme == "dark":
-    st.markdown(dark_css, unsafe_allow_html=True)
-    plotly_template = "plotly_dark"
-
-else:
-    st.markdown(light_css, unsafe_allow_html=True)
-    plotly_template = "plotly_white"
-
-# =========================================================
 # FILE PATHS
 # =========================================================
 
@@ -770,7 +608,6 @@ def analytics_page(df, model):
             y="gcv",
             color="mine_location",
             title="Ash % vs GCV",
-            template=plotly_template,
         )
         st.plotly_chart(fig1, use_container_width=True)
 
@@ -781,13 +618,12 @@ def analytics_page(df, model):
             y="gcv",
             color="mine_location",
             title="Moisture % vs GCV",
-            template=plotly_template,
         )
         st.plotly_chart(fig2, use_container_width=True)
 
     st.subheader("Mine-wise Average GCV")
     mine_quality = df.groupby("mine_location", as_index=False)["gcv"].mean().sort_values("gcv", ascending=False)
-    fig3 = px.bar(mine_quality, x="mine_location", y="gcv", title="Average GCV by Mine Location", template=plotly_template)
+    fig3 = px.bar(mine_quality, x="mine_location", y="gcv", title="Average GCV by Mine Location")
     st.plotly_chart(fig3, use_container_width=True)
 
     st.subheader("Feature Importance")
@@ -804,7 +640,7 @@ def analytics_page(df, model):
             }
         ).sort_values("importance", ascending=False)
 
-        fig4 = px.bar(importance_df, x="importance", y="feature", orientation="h", title="Model Feature Importance", template=plotly_template)
+        fig4 = px.bar(importance_df, x="importance", y="feature", orientation="h", title="Model Feature Importance")
         st.plotly_chart(fig4, use_container_width=True)
         st.dataframe(importance_df, use_container_width=True)
     except Exception:
