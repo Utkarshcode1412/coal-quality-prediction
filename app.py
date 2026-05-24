@@ -25,27 +25,35 @@ st.set_page_config(
 
 hide_streamlit_style = """
 <style>
+
+/* Hide only Streamlit default menu */
 #MainMenu {
     visibility: hidden;
 }
 
+/* Hide footer */
 footer {
     visibility: hidden;
 }
 
+/* DO NOT HIDE HEADER */
+/*
 header {
     visibility: hidden;
 }
+*/
 
+/* Sidebar Styling */
 section[data-testid="stSidebar"] {
     background-color: #111827;
-    width: 320px !important;
 }
 
+/* Sidebar Text */
 section[data-testid="stSidebar"] * {
     color: white !important;
 }
 
+/* Radio Button Styling */
 .stRadio > div {
     gap: 10px;
 }
@@ -55,6 +63,7 @@ section[data-testid="stSidebar"] * {
     font-weight: 600 !important;
 }
 
+/* Metric Cards */
 div[data-testid="metric-container"] {
     background-color: #1e293b;
     border: 1px solid #334155;
@@ -62,6 +71,7 @@ div[data-testid="metric-container"] {
     border-radius: 12px;
 }
 
+/* Custom Cards */
 .custom-card {
     background-color: #1e293b;
     padding: 25px;
@@ -81,9 +91,9 @@ div[data-testid="metric-container"] {
 .main-title {
     color: #FFB000;
 }
+
 </style>
 """
-
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # =========================================================
