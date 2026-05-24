@@ -284,16 +284,6 @@ else:
     st.markdown(light_css, unsafe_allow_html=True)
     plotly_template = "plotly_white"
 
-# for graphs
-fig1 = px.scatter(
-    df,
-    x="ash",
-    y="gcv",
-    color="mine_location",
-    title="Ash % vs GCV",
-    template=plotly_template
-)
-
 # =========================================================
 # FILE PATHS
 # =========================================================
@@ -780,6 +770,7 @@ def analytics_page(df, model):
             y="gcv",
             color="mine_location",
             title="Ash % vs GCV",
+            template=plotly_template,
         )
         st.plotly_chart(fig1, use_container_width=True)
 
@@ -790,12 +781,13 @@ def analytics_page(df, model):
             y="gcv",
             color="mine_location",
             title="Moisture % vs GCV",
+            template=plotly_template,
         )
         st.plotly_chart(fig2, use_container_width=True)
 
     st.subheader("Mine-wise Average GCV")
     mine_quality = df.groupby("mine_location", as_index=False)["gcv"].mean().sort_values("gcv", ascending=False)
-    fig3 = px.bar(mine_quality, x="mine_location", y="gcv", title="Average GCV by Mine Location")
+    fig3 = px.bar(mine_quality, x="mine_location", y="gcv", title="Average GCV by Mine Location", template=plotly_template)
     st.plotly_chart(fig3, use_container_width=True)
 
     st.subheader("Feature Importance")
@@ -812,7 +804,7 @@ def analytics_page(df, model):
             }
         ).sort_values("importance", ascending=False)
 
-        fig4 = px.bar(importance_df, x="importance", y="feature", orientation="h", title="Model Feature Importance")
+        fig4 = px.bar(importance_df, x="importance", y="feature", orientation="h", title="Model Feature Importance", template=plotly_template)
         st.plotly_chart(fig4, use_container_width=True)
         st.dataframe(importance_df, use_container_width=True)
     except Exception:
